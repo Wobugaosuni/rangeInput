@@ -1,4 +1,4 @@
-// input的默认font-size是11px
+// font-size统一设置为11px
 
 bg = #3d3d4a
 trackWidth = 25em  // 11 * 25 = 275
@@ -34,6 +34,7 @@ input[type='range']
   -webkit-appearance none
   background transparent  // 透明色
   outline none // 去掉外边框
+  font-size 11px
 
   // 去除滑块默认样式，基于webkit的浏览器，如Chrome、Safari、Opera等
   &::-webkit-slider-thumb
@@ -60,16 +61,27 @@ input[type='range']
  * 布局样式优化
  */
 .wrap
+  position relative
   margin 2em auto
   width trackWidth
   font-size 11px  // 统一字体大小
 
 output
+  position absolute
+  top 0
+  width thumbDiameter
+  height thumbDiameter
+  display flex
+  align-items center
+  justify-content center
   color #fff
+  // 除了指示该元素不是鼠标事件的目标之外，值none表示鼠标事件“穿透”该元素并且指定该元素“下面”的任何东西。
+  pointer-events none
+  // transform translate((calc(var(--val) / 100 * (trackWidth - thumbDiameter)), 0))
   // var() 实验中的功能，参考：https://developer.mozilla.org/zh-CN/docs/Web/CSS/var
   // 在 chrome://flags 启用 Experimental Web Platform Features 标志
-  /* font-size var(--val) */
-  background conic-gradient(#e64c65 calc(var(--val)*1%), #41a8ab 0%)
+  // font-size var(--val)
+  // background conic-gradient(#e64c65 calc(var(--val)*1%), #41a8ab 0%)
 
   // 伪类添加content
   &:after

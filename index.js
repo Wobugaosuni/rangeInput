@@ -24,11 +24,15 @@ window.onload = function() {
   wrapperElement.addEventListener('change', updateRangeValue, false)
 
   function updateRangeValue() {
+    let trackWidth = 275
+    let thumbDiameter = 0.1 * trackWidth
+
     if (rangeValue !== rangeInputElement.value) {
       outputElement.value = rangeValue = rangeInputElement.value
-      // 在css中使用var()
-      wrapperElement.style.setProperty('--val', rangeValue)
-      console.log('wrapperElement:', wrapperElement)
+      outputElement.style.transform = 'translate(' + rangeValue / 100 * (trackWidth - thumbDiameter) + 'px, 0)'
+      // 在css中使用var()，绑定在容器上的css变量
+      // wrapperElement.style.setProperty('--val', rangeValue)
+      // console.log('wrapperElement:', wrapperElement)
     }
   }
 }

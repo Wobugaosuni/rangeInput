@@ -11,6 +11,7 @@ input[type='range'] {
   -webkit-appearance: none;
   background: transparent;
   outline: none;
+  font-size: 11px;
 }
 input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -41,14 +42,21 @@ input[type='range']::-webkit-slider-thumb {
  * 布局样式优化
  */
 .wrap {
+  position: relative;
   margin: 2em auto;
   width: 25em;
   font-size: 11px;
 }
 output {
+  position: absolute;
+  top: 0;
+  width: 2.5em;
+  height: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #fff;
-/* font-size var(--val) */
-  background: conic-gradient(#e64c65 calc(var(--val) * 1%), #41a8ab 0%);
+  pointer-events: none;
 }
 output:after {
   content: '%';
