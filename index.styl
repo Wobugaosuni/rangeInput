@@ -5,6 +5,7 @@ trackWidth = 25em  // 11 * 25 = 275
 trackheight = .02 * trackWidth // 0.02 * 275 = 5.5
 thumbDiameter = .1 * trackWidth   // 0.1 * 275 = 27.5
 chartWidth = 100% - 2 * .1 * 100% // 275 - 0.2 * 275 = 220
+shadePosition = 39%
 
 track()
   border none
@@ -68,7 +69,9 @@ output
   // var() 实验中的功能，参考：https://developer.mozilla.org/zh-CN/docs/Web/CSS/var
   // 在 chrome://flags 启用 Experimental Web Platform Features 标志
   // font-size var(--val)
-  background conic-gradient(#e64c65 calc(var(--val)*1%), #41a8ab 0%)
+  // 原点辐射渐变（背景遮罩层） + 圆锥渐变
+  background-image radial-gradient(bg shadePosition, transparent shadePosition + .5%), conic-gradient(#e64c65 calc(var(--val)*1%), #41a8ab 0%)
+
 
   // 伪类添加content
   &:after

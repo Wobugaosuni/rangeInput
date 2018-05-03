@@ -20,7 +20,7 @@ window.onload = function() {
   updateRangeValue();
 
   // 判断浏览器是否支持 conic-gradient() ，支持的话增加 .full
-  console.log('getComputedStyle:', getComputedStyle(outputElement).length)
+  console.log('getComputedStyle:', getComputedStyle(outputElement).backgroundImage)
   console.log('style:', outputElement.style.length)
   if (getComputedStyle(outputElement).backgroundImage !== 'none') {
     wrapperElement.classList.add('support-conic-gradient')

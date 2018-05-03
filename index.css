@@ -44,7 +44,7 @@ output {
   justify-content: center;
   color: #fff;
   pointer-events: none;
-  background: conic-gradient(#e64c65 calc(var(--val) * 1%), #41a8ab 0%);
+  background-image: radial-gradient(#3d3d4a 39%, transparent 39.5%), conic-gradient(#e64c65 calc(var(--val) * 1%), #41a8ab 0%);
 }
 output:after {
   content: '%';
