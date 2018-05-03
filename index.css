@@ -38,6 +38,17 @@ input[type='range']::-webkit-slider-thumb {
   background: #e6323e;
   margin-top: -1em;
 }
+output {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  pointer-events: none;
+  background: conic-gradient(#e64c65 calc(var(--val) * 1%), #41a8ab 0%);
+}
+output:after {
+  content: '%';
+}
 /*
  * 布局样式优化
  */
@@ -46,18 +57,20 @@ input[type='range']::-webkit-slider-thumb {
   margin: 2em auto;
   width: 25em;
   font-size: 11px;
+/*
+   * 不支持conic-gradient情况
+   */
+/*
+   * 支持conic-gradient情况
+   */
 }
-output {
+.wrap :not(.support-conic-gradient) output {
   position: absolute;
   top: 0;
   width: 2.5em;
   height: 2.5em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  pointer-events: none;
 }
-output:after {
-  content: '%';
+.wrap .support-conic-gradient {
+  width: 20em;
+  height: 20em;
 }

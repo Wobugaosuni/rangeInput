@@ -4,6 +4,7 @@ bg = #3d3d4a
 trackWidth = 25em  // 11 * 25 = 275
 trackheight = .02 * trackWidth // 0.02 * 275 = 5.5
 thumbDiameter = .1 * trackWidth   // 0.1 * 275 = 27.5
+chartWidth = trackWidth - 2 * .1 * trackWidth
 
 track()
   border none
@@ -56,6 +57,22 @@ input[type='range']
     thumb()
     margin-top -(thumbDiameter - trackheight) * 0.5
 
+output
+  display flex
+  align-items center
+  justify-content center
+  color #fff
+  // 除了指示该元素不是鼠标事件的目标之外，值none表示鼠标事件“穿透”该元素并且指定该元素“下面”的任何东西。https://developer.mozilla.org/zh-CN/docs/Web/CSS/pointer-events
+  pointer-events none
+  // transform translate((calc(var(--val) / 100 * (trackWidth - thumbDiameter)), 0))
+  // var() 实验中的功能，参考：https://developer.mozilla.org/zh-CN/docs/Web/CSS/var
+  // 在 chrome://flags 启用 Experimental Web Platform Features 标志
+  // font-size var(--val)
+  background conic-gradient(#e64c65 calc(var(--val)*1%), #41a8ab 0%)
+
+  // 伪类添加content
+  &:after
+    content '%'
 
 /*
  * 布局样式优化
@@ -66,26 +83,26 @@ input[type='range']
   width trackWidth
   font-size 11px  // 统一字体大小
 
-output
-  position absolute
-  top 0
-  width thumbDiameter
-  height thumbDiameter
-  display flex
-  align-items center
-  justify-content center
-  color #fff
-  // 除了指示该元素不是鼠标事件的目标之外，值none表示鼠标事件“穿透”该元素并且指定该元素“下面”的任何东西。
-  pointer-events none
-  // transform translate((calc(var(--val) / 100 * (trackWidth - thumbDiameter)), 0))
-  // var() 实验中的功能，参考：https://developer.mozilla.org/zh-CN/docs/Web/CSS/var
-  // 在 chrome://flags 启用 Experimental Web Platform Features 标志
-  // font-size var(--val)
-  // background conic-gradient(#e64c65 calc(var(--val)*1%), #41a8ab 0%)
+  /*
+   * 不支持conic-gradient情况
+   */
+  :not(.support-conic-gradient)
 
-  // 伪类添加content
-  &:after
-    content '%'
+    output
+      position absolute
+      top 0
+      width thumbDiameter
+      height thumbDiameter
+
+  /*
+   * 支持conic-gradient情况
+   */
+  .support-conic-gradient
+    width chartWidth
+    height chartWidth
+
+
+
 
 
 
