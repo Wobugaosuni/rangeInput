@@ -4,7 +4,7 @@ bg = #3d3d4a
 trackWidth = 25em  // 11 * 25 = 275
 trackheight = .02 * trackWidth // 0.02 * 275 = 5.5
 thumbDiameter = .1 * trackWidth   // 0.1 * 275 = 27.5
-chartWidth = trackWidth - 2 * .1 * trackWidth
+chartWidth = 100% - 2 * .1 * 100% // 275 - 0.2 * 275 = 220
 
 track()
   border none
@@ -81,7 +81,9 @@ output
   position relative
   margin 2em auto
   width trackWidth
+  height trackWidth
   font-size 11px  // 统一字体大小
+
 
   /*
    * 不支持conic-gradient情况
@@ -97,9 +99,18 @@ output
   /*
    * 支持conic-gradient情况
    */
-  .support-conic-gradient
+.wrap.support-conic-gradient
+  output
     width chartWidth
     height chartWidth
+    border-radius 50%
+    color #7a7a7a
+    font-size 4.25em
+    font-weight 700
+
+  input[type='range']
+    transform-origin 100% 0 // 改变元素变形的原点，在右边开始变形
+    transform rotate(-90deg) translateY(-100%)  // 旋转了自身的坐标系，x轴向上，y轴向右。沿y轴的负方向平移自身高度的距离
 
 
 

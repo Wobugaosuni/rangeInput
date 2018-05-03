@@ -23,7 +23,7 @@ window.onload = function() {
   console.log('getComputedStyle:', getComputedStyle(outputElement).length)
   console.log('style:', outputElement.style.length)
   if (getComputedStyle(outputElement).backgroundImage !== 'none') {
-    outputElement.classList.add('support-conic-gradient')
+    wrapperElement.classList.add('support-conic-gradient')
   }
 
   // 滑块滚动时监听值的变化
