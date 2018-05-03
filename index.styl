@@ -63,8 +63,6 @@ output
   align-items center
   justify-content center
   color #fff
-  // 除了指示该元素不是鼠标事件的目标之外，值none表示鼠标事件“穿透”该元素并且指定该元素“下面”的任何东西。https://developer.mozilla.org/zh-CN/docs/Web/CSS/pointer-events
-  pointer-events none
   // transform translate((calc(var(--val) / 100 * (trackWidth - thumbDiameter)), 0))
   // var() 实验中的功能，参考：https://developer.mozilla.org/zh-CN/docs/Web/CSS/var
   // 在 chrome://flags 启用 Experimental Web Platform Features 标志
@@ -81,7 +79,6 @@ output
  * 布局样式优化
  */
 .wrap
-  position relative
   margin 2em auto
   width trackWidth
   height trackWidth
@@ -103,6 +100,23 @@ output
    * 支持conic-gradient情况
    */
 .wrap.support-conic-gradient
+  position relative
+
+  &:after
+    position absolute
+    right 0
+    bottom 0
+    display flex
+    align-items center
+    justify-content center
+    width thumbDiameter
+    height thumbDiameter
+    counter-reset val var(--val)
+    content counter(val)'%'  // content 只接收字符串的值
+    color #fff
+    // 除了指示该元素不是鼠标事件的目标之外，值none表示鼠标事件“穿透”该元素并且指定该元素“下面”的任何东西。https://developer.mozilla.org/zh-CN/docs/Web/CSS/pointer-events
+    pointer-events none
+
   output
     width chartWidth
     height chartWidth
