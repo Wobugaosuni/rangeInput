@@ -4,19 +4,13 @@ window.onload = function() {
   const rangeInputElement = document.getElementById('rangeInputElement')
   const wrapperElement = rangeInputElement.parentNode
 
-//   console.log('rangeInputElement:', rangeInputElement)
-//   console.log('wrapperElement:', wrapperElement)
-
   // 创建一个output的元素
-  const outputElement = document.createElement('output')
-  // 插入
-  wrapperElement.appendChild(outputElement)
-//   console.log('wrapperElement:', wrapperElement)
+  const outputElement = document.getElementById('outputElement')
 
   // 存储range类型的input的当前值
   let rangeValue = null
 
-//   outputElement.setAttribute('for', rangeInputElement.id);
+  // outputElement.setAttribute('for', rangeInputElement.id);
   // 实时更新滑块的值
   updateRangeValue();
   console.log('getComputedStyle:', getComputedStyle(outputElement).backgroundImage)
@@ -25,7 +19,7 @@ window.onload = function() {
   console.log('getComputedStyle:', getComputedStyle(outputElement).backgroundImage)
   // console.log('style:', outputElement.style.length)
   if (getComputedStyle(outputElement).backgroundImage !== 'none') {
-    // wrapperElement.classList.add('support-conic-gradient')
+    wrapperElement.classList.add('support-conic-gradient')
   }
 
   // 滑块滚动时监听值的变化
