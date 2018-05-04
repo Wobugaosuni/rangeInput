@@ -41,7 +41,8 @@ window.onload = function() {
     // 跟着滑块移动
     if (getComputedStyle(outputElement).backgroundImage !== 'none') {
       // 支持圆锥渐变
-      document.styleSheets[0].addRule('.wrap:after','transform:' + 'translate(0,' + rangeValue / -100 * (trackWidth - thumbDiameter) + 'px)')
+      // js 更改伪元素的样式
+      document.styleSheets[0].addRule('output:before','transform:' + 'translate(0,' + rangeValue / -100 * (trackWidth - thumbDiameter) + 'px)')
       // console.log('after:', getComputedStyle(wrapperElement, ':after'))
     } else {
       // 不支持圆锥渐变的兜底方案
