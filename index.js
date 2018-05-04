@@ -17,13 +17,15 @@ window.onload = function() {
   let rangeValue = null
 
 //   outputElement.setAttribute('for', rangeInputElement.id);
+  // 实时更新滑块的值
   updateRangeValue();
+  console.log('getComputedStyle:', getComputedStyle(outputElement).backgroundImage)
 
   // 判断浏览器是否支持 conic-gradient() ，支持的话增加 .full
-  // console.log('getComputedStyle:', getComputedStyle(outputElement).backgroundImage)
+  console.log('getComputedStyle:', getComputedStyle(outputElement).backgroundImage)
   // console.log('style:', outputElement.style.length)
   if (getComputedStyle(outputElement).backgroundImage !== 'none') {
-    wrapperElement.classList.add('support-conic-gradient')
+    // wrapperElement.classList.add('support-conic-gradient')
   }
 
   // 滑块滚动时监听值的变化
@@ -37,15 +39,19 @@ window.onload = function() {
 
     if (rangeValue !== rangeInputElement.value) {
       outputElement.value = rangeValue = rangeInputElement.value
-
-      // 跟着滑块移动
-      document.styleSheets[0].addRule('.wrap:after','transform:' + 'translate(0,' + rangeValue / -100 * (trackWidth - thumbDiameter) + 'px)')
-      // console.log('after:', getComputedStyle(wrapperElement, ':after'))
-      // getComputedStyle(wrapperElement, ':after').transform = 'translate(' + rangeValue / 100 * (trackWidth - thumbDiameter) + 'px, 0)'
-      // outputElement.style.transform = 'translate(' + rangeValue / 100 * (trackWidth - thumbDiameter) + 'px, 0)'
+      // 传变量到css
       // 在css中使用var()，绑定在容器上的css变量
       wrapperElement.style.setProperty('--val', rangeValue)
-      // console.log('wrapperElement:', wrapperElement)
+    }
+
+    // 跟着滑块移动
+    if (getComputedStyle(outputElement).backgroundImage !== 'none') {
+      // 支持圆锥渐变
+      document.styleSheets[0].addRule('.wrap:after','transform:' + 'translate(0,' + rangeValue / -100 * (trackWidth - thumbDiameter) + 'px)')
+      // console.log('after:', getComputedStyle(wrapperElement, ':after'))
+    } else {
+      // 不支持圆锥渐变的兜底方案
+      outputElement.style.transform = 'translate(' + rangeValue / 100 * (trackWidth - thumbDiameter) + 'px, 0)'
     }
   }
 }

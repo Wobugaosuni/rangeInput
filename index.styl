@@ -68,7 +68,7 @@ output
   // 在 chrome://flags 启用 Experimental Web Platform Features 标志
   // font-size var(--val)
   // 原点辐射渐变（背景遮罩层） + 圆锥渐变
-  background-image radial-gradient(bg shadePosition, transparent shadePosition + .5%), conic-gradient(#e64c65 calc(var(--val)*1%), #41a8ab 0%)
+  // background-image radial-gradient(bg shadePosition, transparent shadePosition + .5%), conic-gradient(#e64c65 calc(var(--val)*1%), #41a8ab 0%)
 
 
   // 伪类添加content
@@ -79,6 +79,7 @@ output
  * 布局样式优化
  */
 .wrap
+  position relative
   margin 2em auto
   width trackWidth
   height trackWidth
@@ -88,46 +89,48 @@ output
   /*
    * 不支持conic-gradient情况
    */
-  :not(.support-conic-gradient)
+  &:not(.support-conic-gradient)
 
     output
       position absolute
       top 0
       width thumbDiameter
       height thumbDiameter
+      pointer-events none
 
   /*
    * 支持conic-gradient情况
    */
-.wrap.support-conic-gradient
-  position relative
+.wrap
 
-  &:after
-    position absolute
-    right 0
-    bottom 0
-    display flex
-    align-items center
-    justify-content center
-    width thumbDiameter
-    height thumbDiameter
-    counter-reset val var(--val)
-    content counter(val)'%'  // content 只接收字符串的值
-    color #fff
-    // 除了指示该元素不是鼠标事件的目标之外，值none表示鼠标事件“穿透”该元素并且指定该元素“下面”的任何东西。https://developer.mozilla.org/zh-CN/docs/Web/CSS/pointer-events
-    pointer-events none
+  &.support-conic-gradient
 
-  output
-    width chartWidth
-    height chartWidth
-    border-radius 50%
-    color #7a7a7a
-    font-size 4.25em
-    font-weight 700
+    &:after
+      position absolute
+      right 0
+      bottom 0
+      display flex
+      align-items center
+      justify-content center
+      width thumbDiameter
+      height thumbDiameter
+      counter-reset val var(--val)
+      content counter(val)'%'  // content 只接收字符串的值
+      color #fff
+      // 除了指示该元素不是鼠标事件的目标之外，值none表示鼠标事件“穿透”该元素并且指定该元素“下面”的任何东西。https://developer.mozilla.org/zh-CN/docs/Web/CSS/pointer-events
+      pointer-events none
 
-  input[type='range']
-    transform-origin 100% 0 // 改变元素变形的原点，在右边开始变形
-    transform rotate(-90deg) translateY(-100%)  // 旋转了自身的坐标系，x轴向上，y轴向右。沿y轴的负方向平移自身高度的距离
+    output
+      width chartWidth
+      height chartWidth
+      border-radius 50%
+      color #7a7a7a
+      font-size 4.25em
+      font-weight 700
+
+    input[type='range']
+      transform-origin 100% 0 // 改变元素变形的原点，在右边开始变形
+      transform rotate(-90deg) translateY(-100%)  // 旋转了自身的坐标系，x轴向上，y轴向右。沿y轴的负方向平移自身高度的距离
 
 
 
