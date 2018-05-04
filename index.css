@@ -36,6 +36,7 @@ input[type='range']::-webkit-slider-thumb {
   height: 2.5em;
   border-radius: 50%;
   background: #e6323e;
+  transition: transform 0.5s ease-out;
   transform: none;
   margin-top: -1em;
 }
@@ -94,6 +95,7 @@ output:after {
   pointer-events: none;
   font-size: 11px;
   color: #fff;
+  transition: opacity 0.5s ease-out;
   opacity: 0;
 }
 .wrap.support-conic-gradient input[type='range'] {
@@ -101,8 +103,9 @@ output:after {
   transform: rotate(-90deg) translateY(-100%);
 }
 .wrap.support-conic-gradient input[type='range']:focus::-webkit-slider-thumb {
-  transform: scale(1.2);
+  transform: scale(1.4);
 }
 .wrap.support-conic-gradient input[type='range']:focus + output:before {
+  transition: opacity 0.5s ease-out;
   opacity: 1;
 }

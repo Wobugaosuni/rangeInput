@@ -21,10 +21,11 @@ thumb()
   height thumbDiameter
   border-radius 50%
   background #e6323e
+  transition transform .5s ease-out
   transform none
 
 thumbEnlarge()
-  transform scale(1.2)
+  transform scale(1.4)
 
 *
   margin 0
@@ -133,6 +134,8 @@ output
         pointer-events none
         font-size 11px
         color #fff
+        // 增加过渡
+        transition opacity .5s ease-out
         opacity 0
 
     input[type='range']
@@ -147,6 +150,7 @@ output
       // 聚焦样式
       // 相邻兄弟选择器
       &:focus + output:before
+        transition opacity .5s ease-out
         opacity 1
 
 
