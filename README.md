@@ -18,7 +18,7 @@
 
   还处在一个实验中的功能，如果想要使用，需要开启在[Chrome实验功能选项](chrome://flags/)：
   <div style="width: 500px">
-    <img src="./imgs/3.png">
+    <img src="./imgs/3.png"  width=500 />
   </div>
 
 虽然圆锥渐变还处在实验中的功能，但不妨碍我们学习怎么去运用它，从而触及旁通。
@@ -104,7 +104,7 @@ Demo: https://jsbin.com/mabitumeja/edit?html,js,output
 ```
 output:
 <div style="width: 700px">
-  <img src="./imgs/6.png">
+  <img src="./imgs/6.png"  width=700 />
 </div>
 
 ## 梳理5-js更改伪元素的样式
