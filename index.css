@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+}
+body {
+  background: #3d3d4a;
+}
+/*
+ * 去除range系统默认样式
+ */
+input[type='range'] {
+  -webkit-appearance: none;
+  background: transparent;
+  outline: none;
+  font-size: 11px;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+/*
+ * 自定义range样式
+ */
+input[type='range'] {
+  width: 25em;
+  height: 2.5em;
+}
+input[type='range']::-webkit-slider-runnable-track {
+  border: none;
+  width: 25em;
+  height: 0.5em;
+  border-radius: 0.25em;
+  background: #343440;
+}
+input[type='range']::-webkit-slider-thumb {
+  border: none;
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+  background: #e6323e;
+  transition: transform 0.5s ease-out;
+  transform: none;
+  margin-top: -1em;
+}
+output {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+/*
+   * 中间镂空层实现
+   */
+  background-image: radial-gradient(#3d3d4a 39%, transparent 39.5%), conic-gradient(#e64c65 calc(var(--val) * 1%), #41a8ab 0%);
+}
+output:after {
+  content: '%';
+}
+/*
+ * 布局样式优化
+ */
+.wrap {
+  position: relative;
+  margin: 2em auto;
+  width: 25em;
+  height: 25em;
+  font-size: 11px;
+/*
+   * 不支持conic-gradient情况
+   */
+/*
+   * 支持conic-gradient情况
+   */
+}
+.wrap:not(.support-conic-gradient) output {
+  position: absolute;
+  top: 0;
+  width: 2.5em;
+  height: 2.5em;
+  pointer-events: none;
+}
+.wrap.support-conic-gradient output {
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  color: #7a7a7a;
+  font-size: 4.25em;
+  font-weight: 700;
+}
+.wrap.support-conic-gradient output:before {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5em;
+  height: 2.5em;
+  counter-reset: val var(--val);
+  content: counter(val) '%';
+  pointer-events: none;
+  font-size: 11px;
+  color: #fff;
+  transition: opacity 0.5s ease-out;
+  opacity: 0;
+}
+.wrap.support-conic-gradient input[type='range'] {
+  transform-origin: 100% 0;
+  transform: rotate(-90deg) translateY(-100%);
+}
+.wrap.support-conic-gradient input[type='range']:focus::-webkit-slider-thumb {
+  transform: scale(1.4);
+}
+.wrap.support-conic-gradient input[type='range']:focus + output:before {
+  transition: opacity 0.5s ease-out;
+  opacity: 1;
+}
