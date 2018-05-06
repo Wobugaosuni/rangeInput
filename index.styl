@@ -83,7 +83,7 @@ output
   // -webkit-mask radial-gradient(transparent shadePosition + .5%, bg shadePosition)
 
 
-  // 伪类添加content
+  // 伪元素类添加content
   &:after
     content '%'
 
@@ -134,7 +134,9 @@ output
         justify-content center
         width thumbDiameter
         height thumbDiameter
+        // 创建或重置一个或多个计数器
         counter-reset val var(--val)
+
         content counter(val)'%'  // content 只接收字符串的值
         // 除了指示该元素不是鼠标事件的目标之外，值none表示鼠标事件“穿透”该元素并且指定该元素“下面”的任何东西。https://developer.mozilla.org/zh-CN/docs/Web/CSS/pointer-events
         pointer-events none
