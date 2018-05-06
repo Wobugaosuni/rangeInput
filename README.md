@@ -7,7 +7,7 @@
 - 圆锥渐变，类似以下的
 
   <div style="width: 200px">
-    <img src="./imgs/1.png">
+    <img src="./imgs/1.png" width=200 />
   </div>
 
 - 浏览器支持情况
@@ -107,6 +107,15 @@ output:
   <img src="./imgs/6.png">
 </div>
 
+## 梳理5-js更改伪元素的样式
+
+js操作Dom元素并不包括伪元素。如果想通过js修改伪元素的样式。可以使用`addRule()`的方法
+
+```js
+  document.styleSheets[0].addRule('output:before','transform:' + 'translate(0,' + rangeValue / -100 * (trackWidth - thumbDiameter) + 'px)')
+```
+
+第一个参数是伪元素，第二个参数是相应的样式
 
 
 ## 文档参考
