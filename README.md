@@ -81,7 +81,7 @@
 - 返回的是一个CSS样式声明对象([object CSSStyleDeclaration])，只读
 - 两个参数，第一个参数：元素（必须），第二个参数：伪元素（非必须）
 
-`getComputedStyle()`与`style`区别：
+`getComputedStyle()`与`style`区别：  
 相同点：
 - 返回的是CSS样式声明对象([object CSSStyleDeclaration])
 
