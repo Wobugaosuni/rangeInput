@@ -73,8 +73,14 @@ output
   // var() 实验中的功能，参考：https://developer.mozilla.org/zh-CN/docs/Web/CSS/var
   // 在 chrome://flags 启用 Experimental Web Platform Features 标志
   // font-size var(--val)
-  // 原点辐射渐变（背景遮罩层） + 圆锥渐变
+  /*
+   * 中间镂空层实现
+   */
+  // 方法一：原点辐射渐变（背景遮罩层） + 圆锥渐变
   background-image radial-gradient(bg shadePosition, transparent shadePosition + .5%), conic-gradient(#e64c65 calc(var(--val)*1%), #41a8ab 0%)
+  // 方法二：使用CSS3的 mask 属性
+  // background-image conic-gradient(#e64c65 calc(var(--val)*1%), #41a8ab 0%)
+  // -webkit-mask radial-gradient(transparent shadePosition + .5%, bg shadePosition)
 
 
   // 伪类添加content

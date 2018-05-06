@@ -7,6 +7,8 @@ window.onload = function() {
   // 创建一个output的元素
   const outputElement = document.getElementById('outputElement')
 
+  // const textElement = document.getElementById('textElement')
+
   // 存储range类型的input的当前值
   let rangeValue = null
 
